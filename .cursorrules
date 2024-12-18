@@ -1,0 +1,48 @@
+# Project Style Guide
+
+## Type Hints
+
+- Strict typing enforced via mypy
+- All function parameters and return types must be annotated
+- Use type hints from `typing` module (List, Optional, etc.)
+- Example:
+
+```python
+def process_document(self, content: bytes, mime_type: str) -> documentai.Document:
+```
+
+## Async/Await
+
+- FastAPI endpoints are async by default
+- Use `asyncio.gather()` for concurrent operations
+- Long-running operations use ThreadPoolExecutor to avoid blocking
+
+## Error Handling
+
+- Use explicit exception handling with logging
+- Return structured error responses via OCRResult model
+- Global exception handler for unhandled errors
+
+## Dependencies
+
+- Managed via Poetry (see pyproject.toml)
+- Key technologies:
+  - FastAPI for API framework
+  - Pydantic for data validation
+  - Google Cloud Document AI for OCR
+  - uvicorn for ASGI server
+
+## Environment Variables
+
+- Configuration via .env file
+- Pydantic Settings management
+
+## Code Formatting
+
+- Clear, descriptive variable and function names
+- Docstrings for public functions and classes
+
+## Misc
+
+- prefer named arguments over positional arguments
+- default to gpt-4o model if using OpenAI models
