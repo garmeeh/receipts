@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import logging
-from app.api import receipts
+from app.api import receipts, users
 
 app = FastAPI(title="Receipt OCR API")
 
 # Register routers
 app.include_router(receipts.router)
+app.include_router(users.router, prefix="/api")
 
 
 @app.exception_handler(Exception)
